@@ -39,11 +39,17 @@
 }
 
 .image-uploader-drop-area {
+  position: relative;
   padding: 40px;
-  border: 1px dashed var(--blue-medium);
+  border: 2px dashed var(--blue-medium);
   border-radius: 12px;
   background: var(--blue-light);
   margin-bottom: 20px;
+  transition: border 0.3s;
+}
+
+.image-uploader-drop-area.drag-over {
+  border: 2px dashed var(--blue-dark);
 }
 
 .image-uploader-drop-area img {
@@ -71,7 +77,12 @@
 }
 
 .image-uploader-input-file {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
 }
 
 @media (max-width: 445px) {

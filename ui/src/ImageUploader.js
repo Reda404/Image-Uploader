@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ImageUploader.css'
 import dropImage from './img/drop-image.svg'
 
 const ImageUploader = () => {
-  const handleFile = (e) => {
+  const [isDragOver, setIsDragOver] = useState(false)
+
+  const uploadFile = (e) => {
     console.log(e.target.value)
   }
 
@@ -13,23 +15,33 @@ const ImageUploader = () => {
       <p className="image-uploader-primary-notice">
         File should be Jpeg, Png,...
       </p>
-      <div className="image-uploader-drop-area">
+      <div
+        className={`image-uploader-drop-area ${
+          isDragOver ? 'drag-over' : null
+        }`}
+      >
         <img src={dropImage} alt="" />
         <p className="image-uploader-secondary-notice">
           Drag & drop your image here
         </p>
+        <input
+          id="file"
+          className="image-uploader-input-file"
+          type="file"
+          accept="image/*"
+          onDragOver={(e) => {
+            e.preventDefault()
+            setIsDragOver(true)
+          }}
+          onDragLeave={() => setIsDragOver(false)}
+          onDrop={() => setIsDragOver(false)}
+          onChange={uploadFile}
+        />
       </div>
       <p className="image-uploader-secondary-notice">Or</p>
       <label className="image-uploader-button" htmlFor="file">
         Choose a file
       </label>
-      <input
-        id="file"
-        className="image-uploader-input-file"
-        type="file"
-        accept="image/*"
-        onChange={handleFile}
-      />
     </form>
   )
 }
