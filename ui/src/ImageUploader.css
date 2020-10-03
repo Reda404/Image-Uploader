@@ -4,9 +4,20 @@
   --gray-dark: #4f4f4f;
   --gray-medium: #828282;
   --gray-light: #bdbdbd;
+  --gray-lighter: #f2f2f2;
   --blue-dark: #2f80ed;
   --blue-medium: #97bef4;
   --blue-light: #f6f8fb;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(400%);
+  }
 }
 
 .image-uploader {
@@ -23,6 +34,26 @@
   font-weight: 500;
   color: var(--gray-dark);
   margin-bottom: 20px;
+}
+
+.image-uploader-title.align-left {
+  text-align: left;
+}
+
+.image-uploader-loading-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: var(--gray-lighter);
+  overflow: hidden;
+}
+
+.image-uploader-loading-slider {
+  height: 6px;
+  border-radius: 3px;
+  width: 25%;
+  background: var(--blue-dark);
+  transform: translateX(-100%);
+  animation: 2s linear infinite slideInRight;
 }
 
 .image-uploader-primary-notice {

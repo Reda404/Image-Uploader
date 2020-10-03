@@ -4,9 +4,22 @@ import dropImage from './img/drop-image.svg'
 
 const ImageUploader = () => {
   const [isDragOver, setIsDragOver] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
 
   const uploadFile = (e) => {
     console.log(e.target.value)
+    setIsUploading(true)
+  }
+
+  if (isUploading) {
+    return (
+      <form className="image-uploader">
+        <h2 className="image-uploader-title align-left">Uploading..</h2>
+        <div className="image-uploader-loading-bar">
+          <div className="image-uploader-loading-slider"></div>
+        </div>
+      </form>
+    )
   }
 
   return (
