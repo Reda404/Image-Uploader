@@ -69,6 +69,12 @@
   margin-bottom: 20px;
 }
 
+.image-uploader-error-notice {
+  font-size: 14px;
+  color: red;
+  margin-top: 20px;
+}
+
 .image-uploader-drop-area {
   position: relative;
   padding: 40px;
@@ -91,7 +97,17 @@
   margin-bottom: 0;
 }
 
+.image-uploader-input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
 .image-uploader-button {
+  display: inline-block;
   padding: 8px 16px;
   background: var(--blue-dark);
   border: none;
@@ -105,15 +121,6 @@
 
 .image-uploader-button:hover {
   background: var(--blue-medium);
-}
-
-.image-uploader-input-file {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
 }
 
 @media (max-width: 445px) {

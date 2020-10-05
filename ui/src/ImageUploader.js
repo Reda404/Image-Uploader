@@ -1,14 +1,32 @@
 import React, { useState } from 'react'
+import axios from 'axios'
 import './ImageUploader.css'
 import dropImage from './img/drop-image.svg'
 
 const ImageUploader = () => {
   const [isDragOver, setIsDragOver] = useState(false)
+  const [errorMessage, setErrorMessage] = useState(null)
   const [isUploading, setIsUploading] = useState(false)
 
   const uploadFile = (e) => {
-    console.log(e.target.value)
-    setIsUploading(true)
+    const file = e.target.files[0]
+
+    if (file !== undefined) {
+      if (file.type === 'image/jpeg' || file.type === 'image/png') {
+        if (file.size <= 1000000) {
+          const form = new FormData()
+          setIsUploading(true)
+          form.append('file', file)
+          axios
+            .post('http://localhost:3001/api/image', form, {})
+            .then((res) => console.log(res))
+        } else {
+          setErrorMessage('File too large')
+        }
+      } else {
+        setErrorMessage('Format not accepted')
+      }
+    }
   }
 
   if (isUploading) {
@@ -26,7 +44,7 @@ const ImageUploader = () => {
     <form className="image-uploader">
       <h2 className="image-uploader-title">Upload your image</h2>
       <p className="image-uploader-primary-notice">
-        File should be Jpeg, Png,...
+        File must be Jpeg or Png up to 1mo
       </p>
       <div
         className={`image-uploader-drop-area ${
@@ -41,7 +59,7 @@ const ImageUploader = () => {
           id="file"
           className="image-uploader-input-file"
           type="file"
-          accept="image/*"
+          accept="image/jpeg, image/png"
           onDragOver={(e) => {
             e.preventDefault()
             setIsDragOver(true)
@@ -55,6 +73,9 @@ const ImageUploader = () => {
       <label className="image-uploader-button" htmlFor="file">
         Choose a file
       </label>
+      {errorMessage ? (
+        <p className="image-uploader-error-notice">{errorMessage}</p>
+      ) : null}
     </form>
   )
 }
