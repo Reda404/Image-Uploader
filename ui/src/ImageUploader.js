@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import './ImageUploader.css'
 import dropImage from './img/drop-image.svg'
+import checkIcon from './img/check-icon.svg'
 
 const ImageUploader = () => {
   const [isDragOver, setIsDragOver] = useState(false)
   const [errorMessage, setErrorMessage] = useState(null)
   const [isUploading, setIsUploading] = useState(false)
+  const [isUploaded, setIsUploaded] = useState(false)
+  const [imageUrl, setImageURL] = useState('')
 
   const uploadFile = (e) => {
     const file = e.target.files[0]
@@ -19,7 +22,11 @@ const ImageUploader = () => {
           form.append('file', file)
           axios
             .post('http://localhost:3001/api/image', form, {})
-            .then((res) => console.log(res))
+            .then((res) => {
+              setIsUploading(false)
+              setIsUploaded(true)
+              setImageURL(res.data.imageUrl)
+            })
         } else {
           setErrorMessage('File too large')
         }
@@ -36,6 +43,16 @@ const ImageUploader = () => {
         <div className="image-uploader-loading-bar">
           <div className="image-uploader-loading-slider"></div>
         </div>
+      </form>
+    )
+  }
+
+  if (isUploaded) {
+    return (
+      <form className="image-uploader">
+        <img className="image-uploader-check-icon" src={checkIcon} alt="" />
+        <h2 className="image-uploader-title">Uploaded Sucessfully!</h2>
+        <img className="image-uploader-image" src={imageUrl} alt="" />
       </form>
     )
   }

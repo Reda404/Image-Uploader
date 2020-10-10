@@ -29,6 +29,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.image-uploader-check-icon {
+  width: 40px;
+  display: block;
+  margin: 0 auto 10px;
+}
+
 .image-uploader-title {
   font-size: 24px;
   font-weight: 500;
@@ -54,6 +60,12 @@
   background: var(--blue-dark);
   transform: translateX(-100%);
   animation: 2s linear infinite slideInRight;
+}
+
+.image-uploader-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 .image-uploader-primary-notice {
