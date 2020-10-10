@@ -29,9 +29,11 @@ const ImageUploader = () => {
             })
         } else {
           setErrorMessage('File too large')
+          e.target.value = null
         }
       } else {
         setErrorMessage('Format not accepted')
+        e.target.value = null
       }
     }
   }
