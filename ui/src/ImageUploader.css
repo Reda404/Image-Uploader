@@ -78,7 +78,7 @@
   border-radius: 8px;
 }
 
-.image-uploader-link input {
+.image-uploader-link-input {
   flex: 1;
   border: none;
   border-radius: 8px 0 0 8px;
@@ -88,7 +88,7 @@
   padding: 10px;
 }
 
-.image-uploader-link button {
+.image-uploader-link-button {
   border: none;
   border-radius: 0 8px 8px 0;
   background: var(--blue-dark);
@@ -174,14 +174,20 @@
     font-size: 20px;
   }
 
+  .image-uploader-link-input,
+  .image-uploader-link-button,
   .image-uploader-primary-notice {
     font-size: 12px;
-    color: var(--gray-medium);
-    margin-bottom: 40px;
   }
 
   .image-uploader-secondary-notice,
   .image-uploader-button {
     font-size: 14px;
+  }
+}
+
+@media (max-width: 320px) {
+  .image-uploader-link-input {
+    font-size: 10px;
   }
 }

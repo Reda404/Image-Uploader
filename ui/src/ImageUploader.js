@@ -64,8 +64,8 @@ const ImageUploader = () => {
         <h2 className="image-uploader-title">Uploaded Sucessfully!</h2>
         <img className="image-uploader-image" src={imageUrl} alt="" />
         <div className="image-uploader-link">
-          <input ref={inputLink} type="text" value={imageUrl} readOnly/>
-          <button onClick={copyLink}>Copy Link</button>
+          <input className="image-uploader-link-input" ref={inputLink} type="text" value={imageUrl} readOnly/>
+          <button className="image-uploader-link-button" onClick={copyLink}>Copy Link</button>
         </div>
       </form>
     )
