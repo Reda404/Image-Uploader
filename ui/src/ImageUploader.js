@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import axios from 'axios'
 import './ImageUploader.css'
 import dropImage from './img/drop-image.svg'
@@ -10,6 +10,14 @@ const ImageUploader = () => {
   const [isUploading, setIsUploading] = useState(false)
   const [isUploaded, setIsUploaded] = useState(false)
   const [imageUrl, setImageURL] = useState('')
+
+  const inputLink = useRef(null)
+
+  const copyLink = (e) => {
+    e.preventDefault()
+    inputLink.current.select()
+    document.execCommand("copy");
+  }
 
   const uploadFile = (e) => {
     const file = e.target.files[0]
@@ -55,6 +63,10 @@ const ImageUploader = () => {
         <img className="image-uploader-check-icon" src={checkIcon} alt="" />
         <h2 className="image-uploader-title">Uploaded Sucessfully!</h2>
         <img className="image-uploader-image" src={imageUrl} alt="" />
+        <div className="image-uploader-link">
+          <input ref={inputLink} type="text" value={imageUrl} readOnly/>
+          <button onClick={copyLink}>Copy Link</button>
+        </div>
       </form>
     )
   }

@@ -63,9 +63,39 @@
 }
 
 .image-uploader-image {
+  display: block;
   max-width: 100%;
   height: auto;
   border-radius: 12px;
+  margin: 40px 0;
+}
+
+.image-uploader-link {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+  border: 1px solid var(--gray-lighter);
+  border-radius: 8px;
+}
+
+.image-uploader-link input {
+  flex: 1;
+  border: none;
+  border-radius: 8px 0 0 8px;
+  background: var(--blue-light);
+  color: var(--gray-dark);
+  font-size: 14px;
+  padding: 10px;
+}
+
+.image-uploader-link button {
+  border: none;
+  border-radius: 0 8px 8px 0;
+  background: var(--blue-dark);
+  color: #fff;
+  font-size: 14px;
+  padding: 10px 20px;
+  cursor: pointer;
 }
 
 .image-uploader-primary-notice {
