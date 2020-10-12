@@ -1,4 +1,11 @@
 .DS_Store
-node_modules/
+node_modules
+build
+.firebase
+.firebaserc
+firebase.json
 .env
+.env.development
+.env.production
 keys
+Procfile

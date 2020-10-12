@@ -16,11 +16,12 @@ const ImageUploader = () => {
   const copyLink = (e) => {
     e.preventDefault()
     inputLink.current.select()
-    document.execCommand("copy");
+    document.execCommand('copy')
   }
 
   const uploadFile = (e) => {
     const file = e.target.files[0]
+    const apiUrl = process.env.REACT_APP_API_URL
 
     if (file !== undefined) {
       if (file.type === 'image/jpeg' || file.type === 'image/png') {
@@ -28,13 +29,11 @@ const ImageUploader = () => {
           const form = new FormData()
           setIsUploading(true)
           form.append('file', file)
-          axios
-            .post('http://localhost:3001/api/image', form, {})
-            .then((res) => {
-              setIsUploading(false)
-              setIsUploaded(true)
-              setImageURL(res.data.imageUrl)
-            })
+          axios.post(`${apiUrl}/api/image`, form, {}).then((res) => {
+            setIsUploading(false)
+            setIsUploaded(true)
+            setImageURL(res.data.imageUrl)
+          })
         } else {
           setErrorMessage('File too large')
           e.target.value = null
@@ -64,8 +63,16 @@ const ImageUploader = () => {
         <h2 className="image-uploader-title">Uploaded Sucessfully!</h2>
         <img className="image-uploader-image" src={imageUrl} alt="" />
         <div className="image-uploader-link">
-          <input className="image-uploader-link-input" ref={inputLink} type="text" value={imageUrl} readOnly/>
-          <button className="image-uploader-link-button" onClick={copyLink}>Copy Link</button>
+          <input
+            className="image-uploader-link-input"
+            ref={inputLink}
+            type="text"
+            value={imageUrl}
+            readOnly
+          />
+          <button className="image-uploader-link-button" onClick={copyLink}>
+            Copy Link
+          </button>
         </div>
       </form>
     )

@@ -8,7 +8,10 @@ const app = express()
 app.use(cors())
 
 const storage = new Storage({
-  keyFilename: process.env.KEY_FILENAME,
+  credentials: {
+    private_key: process.env.PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.CLIENT_EMAIL,
+  },
 })
 
 const bucket = storage.bucket(process.env.BUCKET_URL)
@@ -50,7 +53,9 @@ app.post('/api/image', (req, res) => {
       })
 
       blobWriter.on('finish', () => {
-        const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURI(blob.name)}?alt=media`
+        const imageUrl = `https://firebasestorage.googleapis.com/v0/b/${
+          bucket.name
+        }/o/${encodeURI(blob.name)}?alt=media`
 
         res.status(200).send({ imageUrl })
       })
@@ -60,8 +65,6 @@ app.post('/api/image', (req, res) => {
   })
 })
 
-const port = 3001
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on port ${process.env.PORT}`)
 })
