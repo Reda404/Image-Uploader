@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/Reda404/Image-Uploader">
+    <a href="https://devchallenges.io/solutions/FYDAPj0eTMjTSDOx8wnp">
       Solution
     </a>
     <span> | </span>
@@ -72,39 +72,12 @@ This application/site was created as a submission to a [DevChallenges](https://d
 To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
 
 ```bash
-# Clone this repository
 $ git clone https://github.com/Reda404/Image-Uploader.git
 ```
 
-In the api folder :
+Edit the example.env files as needed and remove 'example' from file names (you may have to generate a private key in firebase console)
 
-Create a .env file with the following variables
-
-```
-PRIVATE_KEY = XXXX
-CLIENT_EMAIL = XXXX
-BUCKET_URL = XXXX
-PORT = XXXX
-```
-
-You can find the first three paramaters by generating a private key in Firebase console
-
-Then execute commands
-
-```bash
-$ npm install
-$ npm start
-```
-
-In the ui folder :
-
-Create a .env file with the following variable
-
-```
-REACT_APP_API_URL = http://localhost:{PORT_YOU_HAVE_DEFINED_FOR_THE_API}
-```
-
-Then execute commands
+You can install and start both backend and frontend with these commands :
 
 ```bash
 $ npm install
